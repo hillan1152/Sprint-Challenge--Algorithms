@@ -5,8 +5,7 @@
 a) O(n) -- the size of n determines the size of the loop
 
 
-b) O(n^2) -- for loop with a nested loop based on the size of n
-
+b) O(log n) -- No matter how hight n gets, the while loop with "j" will never surpass the parameter "m." It will not increase exponentially.
 
 c) O(n) -- runs based on the size of bunnies
 
