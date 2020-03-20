@@ -2,13 +2,13 @@
 
 ## Exercise I
 
-a)
+a) O(n) -- the size of n determines the size of the loop
 
 
-b)
+b) O(n^2) -- for loop with a nested loop based on the size of n
 
 
-c)
+c) O(n) -- runs based on the size of bunnies
 
 ## Exercise II
 
