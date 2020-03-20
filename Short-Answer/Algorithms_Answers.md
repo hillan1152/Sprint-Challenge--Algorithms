@@ -20,6 +20,6 @@ n
 
 f = ?
 
-Since the goal is to minimize the amount of broken eggs, I would start from the lowest floor "f" and drop an egg. If the egg doesn't break (False), continue to the next floor and forgo the process until the first egg breaks. If the egg breaks is True, f = n. 
+Since the goal is to minimize the amount of broken eggs, . If the egg doesn't break (False), continue to the next floor and forgo the process until the first egg breaks. If the egg breaks is True, and return -1 to get the floor where the egg doesn't break. This is linear search.
 
 The run time complexity would be O(n) because we are unsure about the number of floors and n will dictate what floor it will land on. 
