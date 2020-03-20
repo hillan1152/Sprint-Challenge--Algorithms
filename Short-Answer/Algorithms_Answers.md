@@ -2,10 +2,11 @@
 
 ## Exercise I
 
-a) O(n) -- the size of n determines the size of the loop
+a) O(n) -- the size of n determines how often it will loop
 
 
-b) O(log n) -- No matter how hight n gets, the while loop with "j" will never surpass the parameter "m." It will not increase exponentially.
+b) O(log n) -- No matter how high n gets, the while loop with "j" will never surpass the parameter "m." It will not increase exponentially. 
+Another explanation: As j doubles, the sum only increments by 1 and is limited by n.
 
 c) O(n) -- runs based on the size of bunnies
 

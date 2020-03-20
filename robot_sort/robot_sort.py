@@ -100,41 +100,52 @@ class SortingRobot:
         """
         # Fill this out
         # Robot starts at position 0
-        #   GOAL IS TO COMPLETE SELECTION SORT
-        #   STEP 1: FIND THE SMALLEST NUMBER IN THE LIST
-        #           SWAP ITEM TO PICK UP FIRST NUMBER
-        #           SEE IF ROBOT CAN MOVE RIGHT
-        #           IF TRUE, TURN ON LIGHT AND MOVE TO NEXT NUMBER
-        #           COMPARE NUMBERS. IF COMPARE == 1, SWAP, AND CONTINUE PATH
-        #           ELSE IF COMPARE == -1 OR 0, CONTINUE PATH
-        #           IF CAN_MOVE_RIGHT == FALSE, TURN LIGHT OFF
-        #           IF CAN_MOVE_LEFT == TRUE, TURN LIGHT ON AND MOVE BACK TO 0, SWAP ITEM
-        #   STEP 2:
-        while self.can_move_right() == True:
-            self.swap_item()
-            self.set_light_on() and self.light_is_on()
-            self.move_right()
-            if self.compare_item() == 1:
-                self.swap_item()
-                self.move_left()
-                self.swap_item()
-                self.move_right()
-                self.swap_item()
-            elif self.compare_item() == 0:
-                self.move_right()
-            elif self.compare_item() == -1:
-                self.move_left()
-                self.swap_item()
-            elif self.compare_item() == None:
-                return
-            elif self.can_move_right() == False:
-                self.set_light_off()
-                while self.can_move_left() == True:
+        #   if the robot can move to the left it = true, if not = false
+        #   Pick up current card and turn on light
+        #       true/false is used to indicate whether to continue a loop
+        #       move right and compare each card
+        #   compare > = 1, < = -1, 0 = 0, None
+        #   while light is on,
+
+        # THIS IS BUBBLE SORT: SET THE LIGHT TO TRUE,
+        #   CREATE WHILE LOOP THAT TELLS THE FUNCTION IT'S TIME TO SWAP (THE LIGHT)
+        #   SET LIGHT OFF AND CREATE A LOOP FOR MOVING RIGHT (WHILE CAN_MOVE_RIGHT)
+        #   IF THE COMPARED ITEM IS 1: SWAP EM, MOVE RIGHT, AND MAKE THE LIGHT TRUE AGAIN, THIS WILL RESTART THE NEXT ITERATION.
+        #   THE ROBOT REPRESENTS THE I OF THE FOR/WHILE LOOP, IT WILL TAKE IN THE INDEX
+
+        #   Turn light on AKA TRUE
+        self.set_light_on()
+        # Swap item to get it in robots hands
+        self.swap_item()
+        # Move to the next available number
+        self.move_right()
+        # While the light is true run through the loop
+        while self.light_is_on():
+            # Immediately set light to off to control the loops
+            self.set_light_off()
+            # Create loop that is able to move right, and also not have empty spaces in the array
+            while self.can_move_right() and self.compare_item() is not None:
+                # if number being held is greater than the next, swap it, move right, and restart the loop (true)
+                if self.compare_item() == 1:
+                    self.swap_item()
+                    self.move_right()
+                    self.set_light_on()
+                else:
+                    self.move_right()
+                    self.set_light_off()
+            while self.can_move_left() and self.compare_item() is not None:
+                if self.compare_item() == 1:
+                    self.swap_item()
                     self.move_left()
-                    if self.light_is_on() == False:
-                        return
+                    self.set_light_on()
+                else:
+                    self.move_left()
+                    self.set_light_off()
+        self.move_right()
+        self.set_light_on()
 
 
+print("THIS IS ROBOT ---> ", SortingRobot([15, 41, 58, 49, 26, 4, 28, 8]))
 if __name__ == "__main__":
     # Test our your implementation from the command line
     # with `python robot_sort.py`
