@@ -100,7 +100,6 @@ class SortingRobot:
         """
         # Fill this out
         # Robot starts at position 0
-        #   if the robot can move to the left it = true, if not = false
         #   Pick up current card and turn on light
         #       true/false is used to indicate whether to continue a loop
         #       move right and compare each card
@@ -113,36 +112,66 @@ class SortingRobot:
         #   IF THE COMPARED ITEM IS 1: SWAP EM, MOVE RIGHT, AND MAKE THE LIGHT TRUE AGAIN, THIS WILL RESTART THE NEXT ITERATION.
         #   THE ROBOT REPRESENTS THE I OF THE FOR/WHILE LOOP, IT WILL TAKE IN THE INDEX
 
-        #   Turn light on AKA TRUE
-        self.set_light_on()
-        # Swap item to get it in robots hands
-        self.swap_item()
-        # Move to the next available number
-        self.move_right()
-        # While the light is true run through the loop
-        while self.light_is_on():
-            # Immediately set light to off to control the loops
-            self.set_light_off()
-            # Create loop that is able to move right, and also not have empty spaces in the array
-            while self.can_move_right() and self.compare_item() is not None:
-                # if number being held is greater than the next, swap it, move right, and restart the loop (true)
+        # ATTEMPT WITH LIGHT -------> CANNOT FIGURE THIS OUT FOR THE LIFE OF ME
+        # Turn light on AKA TRUE
+        # self.set_light_on()
+        # # While the light is true run through the loop
+        # while self.light_is_on():
+        #     # Swap item to get it in robots hands
+        #     self.swap_item()
+        #     # Move to the next available number
+        #     # self.move_right()
+        #     # # Immediately set light to off to control the loops
+        #     self.set_light_off()
+        #     # Create loop that is able to move right, and also not have empty spaces in the array
+        #     while self.can_move_right():
+        #         # if number being held is greater than the next, swap it, move right, and restart the loop (true)
+        #         self.move_right()
+        #         if self.compare_item() == 1:
+        #             self.swap_item()
+        #             self.move_right()
+        #             self.set_light_on()
+        #         else:
+        #             self.move_right()
+        #         # if robot makes it to the end of the list, start moving back until it reaches the 0 item
+        #     if self.can_move_right() == False:
+        #         while self.compare_item() is not None:
+        #             self.move_left()
+
+        #             if self.compare_item() == None:
+        #                 self.swap_item()
+        #                 self.move_right()
+
+        # while self.can_move_left():
+        #     if self.compare_item() == 1:
+        #         self.swap_item()
+        #         self.move_left()
+        #         self.set_light_on()
+        #     else:
+        #         self.move_left()
+
+        # -------------- ATTEMPT WITHOUT LIGHT ---------------
+        # Goal is to iterate through the entire list and get the lowest number
+        # Set up a while loop that makes sure we are moving right
+        while self.can_move_right():
+            # Gets item
+            self.swap_item()
+            # move onto the next item
+            while self.can_move_right():
+                self.move_right()
+                # compare each item the robot interacts with, swap to get lower number in hand
                 if self.compare_item() == 1:
                     self.swap_item()
-                    self.move_right()
-                    self.set_light_on()
-                else:
-                    self.move_right()
-                    self.set_light_off()
-            while self.can_move_left() and self.compare_item() is not None:
-                if self.compare_item() == 1:
-                    self.swap_item()
+                # else:
+                #     return
+            # If the robot makes it to the end of the list, and is not at "None", move left
+            if self.can_move_right() == False:
+                while self.compare_item() is not None:
                     self.move_left()
-                    self.set_light_on()
-                else:
-                    self.move_left()
-                    self.set_light_off()
-        self.move_right()
-        self.set_light_on()
+                    # If Robot is at "None", Place lowest number in that position and continue to loop until complete, that starts with the moveright()
+                    if self.compare_item() == None:
+                        self.swap_item()
+                        self.move_right()
 
 
 print("THIS IS ROBOT ---> ", SortingRobot([15, 41, 58, 49, 26, 4, 28, 8]))
