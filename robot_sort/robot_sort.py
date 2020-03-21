@@ -153,17 +153,17 @@ class SortingRobot:
         # -------------- ATTEMPT WITHOUT LIGHT ---------------
         # Goal is to iterate through the entire list and get the lowest number
         # Set up a while loop that makes sure we are moving right
+        # SELECTION SORT: FIND SMALLEST NUMBER AND MOVE TO 1 POSITION, CONTINUE
         while self.can_move_right():
             # Gets item
             self.swap_item()
             # move onto the next item
             while self.can_move_right():
                 self.move_right()
-                # compare each item the robot interacts with, swap to get lower number in hand
+                # compare each item the robot interacts with, if robot is greater, swap for smaller number
                 if self.compare_item() == 1:
                     self.swap_item()
-                # else:
-                #     return
+                    continue
             # If the robot makes it to the end of the list, and is not at "None", move left
             if self.can_move_right() == False:
                 while self.compare_item() is not None:
@@ -172,6 +172,7 @@ class SortingRobot:
                     if self.compare_item() == None:
                         self.swap_item()
                         self.move_right()
+                        continue
 
 
 print("THIS IS ROBOT ---> ", SortingRobot([15, 41, 58, 49, 26, 4, 28, 8]))
