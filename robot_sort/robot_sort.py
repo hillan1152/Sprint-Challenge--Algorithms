@@ -106,40 +106,39 @@ class SortingRobot:
         self.set_light_on()
         # while light is on:
         while self.light_is_on():
-            #   turn light off
+            # turn light off
             self.set_light_off()
-        #   While it can move right:
+            # While it can move right:
             while self.can_move_right():
-                #       move to the right
+                # move to the right
                 self.move_right()
-        #       While the comparison is > 0 and not None:
+                # While the comparison is > 0 and not None:
                 while self.compare_item() > 0 and not None:
-                    #           Swap items
+                    # Swap items
                     self.swap_item()
-        #   While can move left and comparison is not None:
+            # While can move left and comparison is not None:
             while self.can_move_left() and self.compare_item() is not None:
-                #         move left
+                # move left
                 self.move_left()
-        #         if comparison is > 0 and not None:
+                # if comparison is > 0 and not None:
                 if self.compare_item() is not None:
                     if self.compare_item() > 0:
-                        #           swap
+                        # swap
                         self.swap_item()
-        #   if compare is none:
+            # if compare is none:
             if self.compare_item() is None:
-                #       swap
+                # swap
                 self.swap_item()
-        #       if can_move_right is false:
+                # if can_move_right is false:
                 if self.can_move_right() is False:
                     return
-        #               turn_light_off
-        #       else:
+                # else:
                 else:
-                    #           move_right
+                    # move_right
                     self.move_right()
-        #           swap
+                    # swap
                     self.swap_item()
-        #           turn_light_on
+                    # turn_light_on
                     self.set_light_on()
 
 
